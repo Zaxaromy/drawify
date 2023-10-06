@@ -7,28 +7,36 @@ const Canvas = ({ socket }) => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
         let isDrawing = false;
+        let prevX, prevY;
 
         socket.on('draw', (data) => {
-            // Extract drawing data (for example, x and y coordinates)
             const { x, y } = data;
 
-            // Begin a new path and move to the specified coordinates
-            context.beginPath();
+            // Begin a new path if it's a new drawing
+            if (prevX === undefined || prevY === undefined) {
+                context.beginPath();
+                context.arc(x, y, 5, 0, Math.PI * 2);
+                context.fillStyle = 'black';
+                context.fill();
+            } else {
+                // Draw a line segment from previous position to current position
+                context.beginPath();
+                context.moveTo(prevX, prevY);
+                context.lineTo(x, y);
+                context.lineWidth = 5;
+                context.strokeStyle = 'black';
+                context.stroke();
+                context.closePath();
 
-            context.arc(x, y, 5, 0, Math.PI * 2)
+                // Draw a circle at the current position
+                context.beginPath();
+                context.arc(x, y, 5, 0, Math.PI * 2);
+                context.fillStyle = 'black';
+                context.fill();
+            }
 
-            // Set line style and color
-            context.lineWidth = 2;
-            context.strokeStyle = 'black';
-
-            // Stroke the path (draw the line)
-            context.stroke();
-
-            context.fill();
-
-            context.closePath();
-
-            console.log(data)
+            prevX = x;
+            prevY = y;
         });
 
         canvas.addEventListener('mousedown', () => {
