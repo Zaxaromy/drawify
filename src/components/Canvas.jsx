@@ -4,8 +4,7 @@ const Canvas = ({ socket }) => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
     const isDrawing = useRef(false);
-    const lastX = useRef(0);
-    const lastY = useRef(0);
+    const prevPos = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -16,57 +15,57 @@ const Canvas = ({ socket }) => {
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
+
         contextRef.current = context;
 
         socket.on('draw', (data) => {
             const { x, y } = data;
 
-            context.beginPath();
-            context.moveTo(lastX.current, lastY.current);
-            context.lineTo(x, y);
-            context.stroke();
+            if (prevPos.current !== null) {
+                contextRef.current.beginPath();
+                contextRef.current.moveTo(prevPos.current.x, prevPos.current.y);
+                contextRef.current.lineTo(x, y);
+                contextRef.current.stroke();
+            }
 
-            lastX.current = x;
-            lastY.current = y;
+            prevPos.current = { x, y };
         });
 
-        const handleMouseDown = (e) => {
-            isDrawing.current = true;
-            lastX.current = e.clientX;
-            lastY.current = e.clientY;
-        };
+        const handleMouseMove = (event) => {
+            if (isDrawing.current) {
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
 
-        const handleMouseUp = () => {
-            isDrawing.current = false;
-        };
+                socket.emit('draw', { x, y });
 
-        const drawLine = (event) => {
-            if (!isDrawing.current) return;
+                if (prevPos.current !== null) {
+                    contextRef.current.beginPath();
+                    contextRef.current.moveTo(prevPos.current.x, prevPos.current.y);
+                    contextRef.current.lineTo(x, y);
+                    contextRef.current.stroke();
+                }
 
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            socket.emit('draw', { x, y });
-
-            contextRef.current.beginPath();
-            contextRef.current.moveTo(lastX.current, lastY.current);
-            contextRef.current.lineTo(x, y);
-            contextRef.current.stroke();
-
-            lastX.current = x;
-            lastY.current = y;
+                prevPos.current = { x, y };
+            }
         }
 
-        document.addEventListener('mousedown', handleMouseDown);
-        document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('mousemove', drawLine);
+        document.addEventListener('mousedown', (event) => {
+            isDrawing.current = true;
+            prevPos.current = null;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDrawing.current = false;
+            prevPos.current = null;
+        });
+
+        document.addEventListener('mousemove', handleMouseMove);
 
         return () => {
-            document.removeEventListener('mousedown', handleMouseDown);
-            document.removeEventListener('mouseup', handleMouseUp);
-            document.removeEventListener('mousemove', drawLine);
+            document.removeEventListener('mousedown', () => isDrawing.current = true);
+            document.removeEventListener('mouseup', () => isDrawing.current = false);
+            document.removeEventListener('mousemove', handleMouseMove);
         };
     }, [socket]);
 
