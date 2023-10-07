@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Canvas = ({ socket }) => {
     const canvasRef = useRef(null);
@@ -6,60 +6,54 @@ const Canvas = ({ socket }) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        context.strokeStyle = 'black';
+        context.lineJoin = "round";
+        context.lineCap = "round";
+
         let isDrawing = false;
-        let prevX, prevY;
+        let [lastX, lastY] = [0, 0];
 
-        socket.on('draw', (data) => {
-            const { x, y } = data;
-
-            // Begin a new path if it's a new drawing
-            if (prevX === undefined || prevY === undefined) {
-                context.beginPath();
-                context.arc(x, y, 5, 0, Math.PI * 2);
-                context.fillStyle = 'black';
-                context.fill();
-            } else {
-                // Draw a line segment from previous position to current position
-                context.beginPath();
-                context.moveTo(prevX, prevY);
-                context.lineTo(x, y);
-                context.lineWidth = 5;
-                context.strokeStyle = 'black';
-                context.stroke();
-                context.closePath();
-
-                // Draw a circle at the current position
-                context.beginPath();
-                context.arc(x, y, 5, 0, Math.PI * 2);
-                context.fillStyle = 'black';
-                context.fill();
-            }
-
-            prevX = x;
-            prevY = y;
-        });
-
-        canvas.addEventListener('mousedown', () => {
-            isDrawing = true;
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
+        const drawLine = (event) => {
             if (!isDrawing) return;
 
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            context.beginPath();
+            context.moveTo(lastX, lastY);
+            context.lineTo(event.offsetX, event.offsetY);
+            context.stroke();
+            lastX = event.offsetX;
+            lastY = event.offsetY;
 
             // Send drawing data to the server
-            socket.emit('draw', { x, y });
-        });
+            socket.emit('draw', { x: lastX, y: lastY });
+        }
 
-        canvas.addEventListener('mouseup', () => {
-            isDrawing = false;
-        });
+        document.addEventListener('mousemove', drawLine);
+
+        const handleMouseDown = (e) => {
+            isDrawing = true;
+            lastX = e.offsetX;
+            lastY = e.offsetY;
+        }
+
+        const handleMouseUp = () => isDrawing = false;
+
+        const handleMouseOut = () => isDrawing = false;
+
+        document.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('mouseout', handleMouseOut);
+
+        return () => {
+            document.removeEventListener('mousemove', drawLine);
+            document.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('mouseout', handleMouseOut);
+        };
     }, [socket]);
 
-    return <canvas ref={canvasRef} width="800" height="600"></canvas>;
+    return <canvas ref={canvasRef}></canvas>;
 };
 
 export default Canvas;
