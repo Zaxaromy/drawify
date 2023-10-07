@@ -2,54 +2,71 @@ import React, { useEffect, useRef } from 'react';
 
 const Canvas = ({ socket }) => {
     const canvasRef = useRef(null);
+    const contextRef = useRef(null);
+    const isDrawing = useRef(false);
+    const lastX = useRef(0);
+    const lastY = useRef(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
         context.strokeStyle = 'black';
         context.lineJoin = "round";
         context.lineCap = "round";
 
-        let isDrawing = false;
-        let [lastX, lastY] = [0, 0];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        contextRef.current = context;
 
-        const drawLine = (event) => {
-            if (!isDrawing) return;
+        socket.on('draw', (data) => {
+            const { x, y } = data;
 
             context.beginPath();
-            context.moveTo(lastX, lastY);
-            context.lineTo(event.offsetX, event.offsetY);
+            context.moveTo(lastX.current, lastY.current);
+            context.lineTo(x, y);
             context.stroke();
-            lastX = event.offsetX;
-            lastY = event.offsetY;
 
-            // Send drawing data to the server
-            socket.emit('draw', { x: lastX, y: lastY });
-        }
-
-        document.addEventListener('mousemove', drawLine);
+            lastX.current = x;
+            lastY.current = y;
+        });
 
         const handleMouseDown = (e) => {
-            isDrawing = true;
-            lastX = e.offsetX;
-            lastY = e.offsetY;
+            isDrawing.current = true;
+            lastX.current = e.clientX;
+            lastY.current = e.clientY;
+        };
+
+        const handleMouseUp = () => {
+            isDrawing.current = false;
+        };
+
+        const drawLine = (event) => {
+            if (!isDrawing.current) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            socket.emit('draw', { x, y });
+
+            contextRef.current.beginPath();
+            contextRef.current.moveTo(lastX.current, lastY.current);
+            contextRef.current.lineTo(x, y);
+            contextRef.current.stroke();
+
+            lastX.current = x;
+            lastY.current = y;
         }
-
-        const handleMouseUp = () => isDrawing = false;
-
-        const handleMouseOut = () => isDrawing = false;
 
         document.addEventListener('mousedown', handleMouseDown);
         document.addEventListener('mouseup', handleMouseUp);
-        document.addEventListener('mouseout', handleMouseOut);
+        document.addEventListener('mousemove', drawLine);
 
         return () => {
-            document.removeEventListener('mousemove', drawLine);
             document.removeEventListener('mousedown', handleMouseDown);
             document.removeEventListener('mouseup', handleMouseUp);
-            document.removeEventListener('mouseout', handleMouseOut);
+            document.removeEventListener('mousemove', drawLine);
         };
     }, [socket]);
 
