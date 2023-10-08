@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import Canvas from "./components/Canvas";
+import Canvas from "./Canvas";
 
 const ServerConnection = () => {
     const [socket, setSocket] = useState(null);

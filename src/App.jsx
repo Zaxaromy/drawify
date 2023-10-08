@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Menu from "./components/Menu";
 import Canvas from "./components/Canvas";
+import ServerConnection from "./components/ServerConnection";
 
-const App = () => {
-    const [socket, setSocket] = useState(null);
-
-    useEffect(() => {
-        const newSocket = io('http://localhost:3001');
-        setSocket(newSocket);
-
-        return () => newSocket.close();
-    }, []);
-
-    return (
-        <div>
-            <h1>Collaborative Canvas</h1>
-            {socket && <Canvas socket={socket} />}
-        </div>
-    );
-};
-
-export default App;
+export default  function App() {
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<ServerConnection />} />
+                <Route path='/src/components/Menu' element={<Menu />} />
+            </Routes>
+        </BrowserRouter>
+    )
+}
