@@ -17,7 +17,7 @@ const ServerConnection = () => {
             <h1>Collaborative Canvas</h1>
             {socket && <Canvas socket={socket} />}
         </div>
-    );git 
+    );
 };
 
 export default ServerConnection;
