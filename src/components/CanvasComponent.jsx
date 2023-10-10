@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const Canvas = ({ socket }) => {
+const CanvasComponent = ({ socket }) => {
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
     const isDrawing = useRef(false);
@@ -12,9 +12,6 @@ const Canvas = ({ socket }) => {
         context.strokeStyle = 'black';
         context.lineJoin = "round";
         context.lineCap = "round";
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
 
         contextRef.current = context;
 
@@ -72,7 +69,7 @@ const Canvas = ({ socket }) => {
         };
     }, [socket]);
 
-    return <canvas ref={canvasRef}></canvas>;
+    return <canvas ref={canvasRef} width={800} height={600}></canvas>;
 };
 
-export default Canvas;
+export default CanvasComponent;
