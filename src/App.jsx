@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Menu from "./components/Menu";
-import Canvas from "./components/Canvas";
 import ServerConnection from "./components/ServerConnection";
 
 export default  function App() {
