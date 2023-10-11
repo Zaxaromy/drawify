@@ -14,21 +14,14 @@ function ServerConnection() {
 
   return (
     <>
-      <div className="palette">
-        <h1>palette</h1>
-      </div>
-
-      <div className="brushes">
-        <h1>brushes</h1>
-      </div>
-
-      <div className="items">
-        <h1>items</h1>
-      </div>
-
-      <div className="finish">
-        <h1>finish</h1>
-      </div>
+      <span className="palette">
+        <span className="color-1" />
+        <span className="color-2" />
+        <span className="color-3" />
+        <span className="color-4" />
+        <span className="color-5" />
+        <span className="color-6" />
+      </span>
 
       <div className="canvas">
         {socket && <CanvasComponent socket={socket} />}
