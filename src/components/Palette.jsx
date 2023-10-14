@@ -2,7 +2,7 @@ import React from 'react';
 
 function Palette() {
   return (
-    <div className="Pallete">
+    <div className="pallete">
       <span className="black" />
       <span className="dark-gray" />
       <span className="gray" />
