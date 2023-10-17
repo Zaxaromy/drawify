@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import CanvasComponent from './CanvasComponent';
+import Tools from './Tools';
 
 function ServerConnection() {
   const [socket, setSocket] = useState(null);
@@ -13,8 +14,9 @@ function ServerConnection() {
   }, []);
 
   return (
-    <div className="canvas">
+    <div className="canvas-wrapper">
       {socket && <CanvasComponent socket={socket} />}
+      <Tools />
     </div>
   );
 }

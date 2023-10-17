@@ -9,4 +9,12 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
+  build: {
+    rollupOptions: {
+      input: 'src/index.jsx',
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+      },
+    },
+  },
 });

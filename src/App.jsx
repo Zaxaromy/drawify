@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Menu from './components/Menu';
-import ServerConnection from './components/ServerConnection';
+import Menu from './assets/components/Menu';
+import ServerConnection from './assets/components/ServerConnection';
 
 export default function App() {
   return (

@@ -74,7 +74,7 @@ function CanvasComponent({ socket }) {
     };
   }, [socket]);
 
-  return <canvas ref={canvasRef} width={800} height={600} />;
+  return <canvas ref={canvasRef} width={1200} height={800} />;
 }
 
 export default CanvasComponent;
