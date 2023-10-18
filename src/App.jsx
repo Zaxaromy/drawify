@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Menu from './assets/components/Menu';
-import CanvasPage from './assets/components/CanvasPage';
+import Menu from './components/Menu';
+import CanvasPage from './components/CanvasPage';
 
 export default function App() {
   return (

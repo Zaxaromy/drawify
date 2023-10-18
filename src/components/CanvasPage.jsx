@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import CanvasComponent from './CanvasComponent';
 import Tools from './Tools';
 import ChatSystem from './ChatSystem';
+import Underbar from './Underbar';
 
 function CanvasPage() {
   const [socket, setSocket] = useState(null);
@@ -18,7 +19,7 @@ function CanvasPage() {
     <div className="canvas-page">
       <div className="canvas-wrapper">
         {socket && <CanvasComponent socket={socket} />}
-        <Tools />
+        <Underbar />
       </div>
       <ChatSystem />
     </div>
