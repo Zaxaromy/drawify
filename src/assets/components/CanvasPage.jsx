@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import CanvasComponent from './CanvasComponent';
 import Tools from './Tools';
+import ChatSystem from './ChatSystem';
 
-function ServerConnection() {
+function CanvasPage() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
@@ -14,11 +15,14 @@ function ServerConnection() {
   }, []);
 
   return (
-    <div className="canvas-wrapper">
-      {socket && <CanvasComponent socket={socket} />}
-      <Tools />
+    <div className="canvas-page">
+      <div className="canvas-wrapper">
+        {socket && <CanvasComponent socket={socket} />}
+        <Tools />
+      </div>
+      <ChatSystem />
     </div>
   );
 }
 
-export default ServerConnection;
+export default CanvasPage;
