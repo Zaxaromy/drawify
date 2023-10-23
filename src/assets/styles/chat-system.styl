@@ -5,14 +5,15 @@
   width 250px
   height 800px
   font-family 'Onest', sans-serif
-  margin-top -4px
+  margin-top -1px
   margin-left 10px
   background-color white
-  outline 5px solid rgba(57,69,157,0.5)
+  outline 5px solid rgba(57,69,157,0.4)
   border-radius 15px
+  //position fixed
   
 .divider
-  width 80%
+  width 90%
   height 3px
   background-color gray
   opacity 10%
@@ -43,36 +44,70 @@
   background-color rgba(76, 92, 209, 1)
   width fit-content
   height fit-content
-  margin-left 10px
+  margin-left 15px
+  margin-top 5px
   border none
   border-radius 10px
-  
+
 .answers-title-wrapper
   background-color rgba(76, 92, 209, 1)
   width fit-content
   height fit-content
-  margin-left 10px
-  margin-top 10px
+  margin-left 15px
+  margin-top 15px
   border none
   border-radius 10px
 
 .chat-title
   display flex
   justify-content center
-  padding 10px
-  width 80px
-  background-color darken(rgba(76, 92, 209, 0.9), 10%)
+  padding 10px 15px 10px 15px
+  width 60px
+  background-color rgba(57,69,157,0.1)
   border-radius 10px
   color white
+  font-weight 700
   
 .answers-title
   display flex
   justify-content center
-  padding 10px
+  padding 10px 15px 10px 15px
   width 100px
-  background-color darken(rgba(76, 92, 209, 0.9), 10%)
+  background-color rgba(57,69,157,0.1)
   border-radius 10px
   color white
+  font-weight 700
   
-.text-input
-  margin 0px 5px 2px 5px
+.answers-text-input
+  margin 0px 10px 5px 10px
+  border-radius 5px
+  border 1px solid rgba(128, 128, 128, 0.5)
+  padding 10px 0px 10px 23.7px
+  
+.chat-text-input
+  margin 10px 10px 15px 10px
+  border-radius 5px
+  border 1px solid rgba(128, 128, 128, 0.5)
+  padding 10px 0px 10px 33.5px
+  
+input::placeholder
+  opacity 50%
+
+input:focus
+  outline none
+  
+.question-mark-icon
+  width 20px
+  opacity 30%
+  position absolute
+  margin-top 355.45px
+  margin-left 14.5px
+  
+.chat-bubble-icon
+  width 23px
+  opacity 30%
+  position absolute
+  margin-top 344.1px
+  margin-left 18px
+
+  

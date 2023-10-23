@@ -7,7 +7,8 @@ function Answers() {
         <span className="answers-title">ANSWERS</span>
       </div>
       {/* <div className="text-wrapper" /> */}
-      <input className="text-input" type="text" placeholder="Answer here..." />
+      <input className="answers-text-input" type="text" placeholder="Answer here..." />
+      <img src="src/assets/icons/question-mark-icon.png" alt="question mark icon" className="question-mark-icon" />
     </div>
   );
 }
