@@ -1,5 +1,5 @@
+underbar-color = rgba(57,69,157,1)
 underbar-border = 3px solid rgba(57,69,157,0.5)
-base-color = rgba(57,69,157,1)
 
 .underbar-wrapper
   margin 5px 0 0 0
@@ -96,8 +96,8 @@ base-color = rgba(57,69,157,1)
   border underbar-border
   border-radius 5px
   background-color rgba(57,69,157,0.3)
-
-.range-label-small-border
+  
+.range-label-border
   height 30px
   width 30px
   margin-top 4.5px
@@ -112,8 +112,15 @@ base-color = rgba(57,69,157,1)
   height 1px
   width 1px
   background-color base-color
-  border 0.5px solid rgba(57,69,157,1)
+  border 0.5px solid underbar-color
   border-radius 50%
+  
+.range-label-big
+  height 20px
+  width 20px
+  border 0.5px solid underbar-color
+  border-radius 100%
+  background-color underbar-color
   
 .range-wrapper
   width 130px
@@ -124,34 +131,16 @@ input[type="range"]
   height 13px
   margin-top 16px
   margin-left -0.4px
-  background: rgba(57, 69, 157, 1)
+  background underbar-color
   border-radius: 10px
   outline: none
-  
+
 input[type="range"]::-webkit-slider-thumb
   -webkit-appearance none
   appearance none
   width 25px
   height 25px
-  background lighten(rgba(57, 69, 157, 1), 15%)
-  border 3px solid rgba(57, 69, 157, 1)
+  background lighten(underbar-color, 15%)
+  border 3px solid underbar-color
   border-radius 50%
   cursor pointer
-  
-.range-label-big-border
-  height 30px
-  width 30px
-  margin-top 4.5px
-  display flex
-  justify-content center
-  align-items center
-  border underbar-border
-  border-radius 50%
-  cursor pointer
-  
-.range-label-big
-  height 20px
-  width 20px
-  border 0.5px solid rgba(57,69,157,1)
-  border-radius 100%
-  background-color rgba(57,69,157,1)

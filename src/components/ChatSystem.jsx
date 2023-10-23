@@ -6,6 +6,7 @@ function ChatSystem() {
   return (
     <div className="chat-system-wrapper">
       <Answers />
+      <span className="divider" />
       <Chat />
     </div>
   );

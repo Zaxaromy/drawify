@@ -2,7 +2,13 @@ import React from 'react';
 
 function Chat() {
   return (
-    <span className="chat">chat</span>
+    <div className="chat-wrapper">
+      <div className="chat-title-wrapper">
+        <span className="chat-title">CHAT</span>
+      </div>
+      {/* <div className="text-wrapper" /> */}
+      <input className="text-input" type="text" placeholder="Chat here" />
+    </div>
   );
 }
 
