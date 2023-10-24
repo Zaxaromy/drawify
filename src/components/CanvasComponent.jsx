@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useLineWidthContext } from './LineWidthProvider';
 
 // eslint-disable-next-line react/prop-types
 function CanvasComponent({ socket }) {
@@ -6,6 +7,7 @@ function CanvasComponent({ socket }) {
   const contextRef = useRef(null);
   const isDrawing = useRef(false);
   const prevPos = useRef(null);
+  const { lineWidth, setLineWidth } = useLineWidthContext();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,8 +15,14 @@ function CanvasComponent({ socket }) {
     context.strokeStyle = 'black';
     context.lineJoin = 'round';
     context.lineCap = 'round';
-
+    context.lineWidth = lineWidth;
     contextRef.current = context;
+
+    const handleLineWidthChange = (newWidth) => {
+      contextRef.current.lineWidth = newWidth; // Update the context value
+      setLineWidth(newWidth); // Update the context value
+    };
+    handleLineWidthChange(lineWidth);
 
     // eslint-disable-next-line react/prop-types
     socket.on('draw', (data) => {
@@ -72,7 +80,7 @@ function CanvasComponent({ socket }) {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [socket]);
+  }, [socket, lineWidth]);
 
   return <canvas ref={canvasRef} width={1200} height={800} />;
 }
