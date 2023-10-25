@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorWheel from './ColorWheel';
 
 function Palette() {
   return (
@@ -18,7 +19,7 @@ function Palette() {
         <span className="palette-color pink" />
         <span className="palette-color purple" />
         <span className="palette-color brown" />
-        {/* <span className="color-picker" /> */}
+        <ColorWheel />
       </div>
     </div>
   );
