@@ -20,7 +20,8 @@ function Slider() {
     <div className="slider-wrapper">
       <div className="range-label-wrapper">
         <span className="range-label-border">
-          <button type="button" className="range-label-small" onClick={setLineWidthSmall} aria-label="Set Small Line Width" />
+          <span className="range-label-small" />
+          <button type="button" className="range-label-button" onClick={setLineWidthSmall} aria-label="Set Small Line Width" />
         </span>
       </div>
       <div className="range-wrapper">
@@ -35,7 +36,8 @@ function Slider() {
       </div>
       <div className="range-label-wrapper">
         <span className="range-label-border">
-          <button type="button" className="range-label-big" onClick={setLineWidthBig} aria-label="Set Line Width Big" />
+          <span className="range-label-big" />
+          <button type="button" className="range-label-button" onClick={setLineWidthBig} aria-label="Set Line Width Big" />
         </span>
       </div>
     </div>

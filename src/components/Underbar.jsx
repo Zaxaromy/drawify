@@ -3,11 +3,11 @@ import Tools from './Tools';
 import Palette from './Palette';
 import Slider from './Slider';
 
-function Underbar() {
+function Underbar({ setSelectedColor }) {
   return (
     <div className="underbar-wrapper">
       <Tools />
-      <Palette />
+      <Palette setSelectedColor={setSelectedColor} />
       <Slider />
     </div>
   );

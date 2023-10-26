@@ -4,9 +4,12 @@ import CanvasComponent from './CanvasComponent';
 import ChatSystem from './ChatSystem';
 import Underbar from './Underbar';
 import LineWidthProvider from './LineWidthProvider';
+import { ColorProvider } from './ColorContextProvider';
+import { ClearCanvasProvider } from './ClearCanvasContext';
 
 function CanvasPage() {
   const [socket, setSocket] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('#000000');
 
   useEffect(() => {
     const newSocket = io(import.meta.env.VITE_SERVER_URL);
@@ -17,13 +20,22 @@ function CanvasPage() {
 
   return (
     <LineWidthProvider>
-      <div className="canvas-page">
-        <div className="canvas-wrapper">
-          {socket && <CanvasComponent socket={socket} />}
-          <Underbar />
-        </div>
-        <ChatSystem />
-      </div>
+      <ColorProvider>
+        <ClearCanvasProvider>
+          <div className="canvas-page">
+            <div className="canvas-wrapper">
+              {socket && <CanvasComponent socket={socket} selectedColor={selectedColor} />}
+              <Underbar setSelectedColor={setSelectedColor} />
+            </div>
+            <ChatSystem />
+            <span className="attribution">
+              Icons by
+              <span> </span>
+              <a href="https://www.freepik.com/" target="_blank" rel="noreferrer">Freepik</a>
+            </span>
+          </div>
+        </ClearCanvasProvider>
+      </ColorProvider>
     </LineWidthProvider>
   );
 }

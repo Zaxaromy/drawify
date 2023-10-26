@@ -1,18 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import { useLineWidthContext } from './LineWidthProvider';
+import { useColorContext } from './ColorContextProvider';
+import { useClearCanvas } from './ClearCanvasContext'; // Import the useCanvas hook
 
-// eslint-disable-next-line react/prop-types
 function CanvasComponent({ socket }) {
-  const canvasRef = useRef(null);
+  const { canvasRef, clearCanvas } = useClearCanvas();
   const contextRef = useRef(null);
   const isDrawing = useRef(false);
   const prevPos = useRef(null);
   const { lineWidth } = useLineWidthContext();
+  const { selectedColor } = useColorContext();
 
   useEffect(() => {
+    console.log(selectedColor);
+
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    context.strokeStyle = 'black';
+    context.strokeStyle = selectedColor;
     context.lineJoin = 'round';
     context.lineCap = 'round';
     context.lineWidth = lineWidth;
@@ -74,7 +78,7 @@ function CanvasComponent({ socket }) {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [socket, lineWidth]);
+  }, [socket, lineWidth, selectedColor]);
 
   return <canvas ref={canvasRef} width={1200} height={800} />;
 }
