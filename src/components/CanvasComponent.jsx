@@ -4,7 +4,7 @@ import { useColorContext } from './ColorContextProvider';
 import { useClearCanvas } from './ClearCanvasContext'; // Import the useCanvas hook
 
 function CanvasComponent({ socket }) {
-  const { canvasRef, clearCanvas } = useClearCanvas();
+  const { canvasRef } = useClearCanvas();
   const contextRef = useRef(null);
   const isDrawing = useRef(false);
   const prevPos = useRef(null);
@@ -12,8 +12,6 @@ function CanvasComponent({ socket }) {
   const { selectedColor } = useColorContext();
 
   useEffect(() => {
-    console.log(selectedColor);
-
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     context.strokeStyle = selectedColor;
