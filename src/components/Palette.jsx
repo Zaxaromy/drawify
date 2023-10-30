@@ -19,42 +19,42 @@ function Palette() {
       <div className="palette-wrapper">
         <div className="palette-top">
           <span className="palette-color black">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#333333')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#353535')} />
           </span>
           <span className="palette-color dark-gray">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#a9a9a9')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#a6a6a6')} />
           </span>
           <span className="palette-color gray">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#808080')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#bfbfbf')} />
           </span>
           <span className="palette-color white">
             <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ffffff')} />
           </span>
           <span className="palette-color red">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#f00f00')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#f7514d')} />
           </span>
-          <span className="palette-color orange">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ffa500')} />
+          <span className="palette-color green">
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#23ab52')} />
           </span>
         </div>
         <div className="palette-bottom">
-          <span className="palette-color yellow">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ff0ff0')} />
-          </span>
-          <span className="palette-color green">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#008000')} />
-          </span>
           <span className="palette-color blue">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#006eff')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#1a7cff')} />
+          </span>
+          <span className="palette-color yellow">
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#fed347')} />
+          </span>
+          <span className="palette-color orange">
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ffb733')} />
           </span>
           <span className="palette-color pink">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ff0ff0')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#ff8af8')} />
           </span>
           <span className="palette-color purple">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#800080')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#6574ef')} />
           </span>
           <span className="palette-color brown">
-            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#a52a2a')} />
+            <button type="button" className="palette-button" aria-label="palette button onclick" onClick={() => handleButtonClick('#a17570')} />
           </span>
         </div>
       </div>

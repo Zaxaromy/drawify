@@ -5,7 +5,7 @@ import React, {
 const LineWidthContext = createContext({});
 
 function LineWidthProvider({ children }) {
-  const [lineWidth, setLineWidth] = useState(3);
+  const [lineWidth, setLineWidth] = useState(4);
 
   const contextValue = useMemo(() => ({
     lineWidth,

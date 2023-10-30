@@ -6,7 +6,11 @@ function Tools() {
 
   return (
     <div className="tools-wrapper">
-      <img className="brush icon" alt="brush icon" src="src/assets/icons/brush-icon.png" />
+      <span className="brush-wrapper">
+        <img className="brush icon" alt="brush icon" src="src/assets/icons/brush-icon.png" />
+        <button type="button" className="brush-button" aria-label="erase all button" />
+      </span>
+      <span className="eraser-wrapper" />
       <img className="eraser icon" alt="eraser icon" src="src/assets/icons/eraser-icon.png" />
       <img className="spray icon" alt="spray icon" src="src/assets/icons/spray-icon.png" />
       <img className="splash icon" alt="splash icon" src="src/assets/icons/splash-icon.png" />

@@ -9,7 +9,7 @@ function Slider() {
   };
 
   const setLineWidthSmall = () => {
-    setLineWidth(3);
+    setLineWidth(4);
   };
 
   const setLineWidthBig = () => {
@@ -29,8 +29,8 @@ function Slider() {
           type="range"
           value={lineWidth}
           onChange={handleSliderChange}
-          step="4.25"
-          min="3"
+          step="4"
+          min="4"
           max="20"
         />
       </div>

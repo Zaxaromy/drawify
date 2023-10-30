@@ -4,6 +4,7 @@ import App from './App';
 import './assets/styles/canvas-page.styl';
 import './assets/styles/underbar.styl';
 import './assets/styles/chat-system.styl';
+import './assets/styles/player-list.styl';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

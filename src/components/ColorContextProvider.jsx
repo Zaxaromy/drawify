@@ -5,7 +5,7 @@ import React, {
 const ColorContext = createContext();
 
 export function ColorProvider({ children }) {
-  const [selectedColor, setSelectedColor] = useState('#000000');
+  const [selectedColor, setSelectedColor] = useState('#333333');
 
   const contextValue = useMemo(
     () => ({ selectedColor, setSelectedColor }),

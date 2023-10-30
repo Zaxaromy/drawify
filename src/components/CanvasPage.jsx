@@ -6,6 +6,8 @@ import Underbar from './Underbar';
 import LineWidthProvider from './LineWidthProvider';
 import { ColorProvider } from './ColorContextProvider';
 import { ClearCanvasProvider } from './ClearCanvasContext';
+import PlayerList from './PlayerList';
+import Timer from './Timer';
 
 function CanvasPage() {
   const [socket, setSocket] = useState(null);
@@ -23,6 +25,8 @@ function CanvasPage() {
       <ColorProvider>
         <ClearCanvasProvider>
           <div className="canvas-page">
+            <PlayerList />
+            <Timer />
             <div className="canvas-wrapper">
               {socket && <CanvasComponent socket={socket} selectedColor={selectedColor} />}
               <Underbar setSelectedColor={setSelectedColor} />
