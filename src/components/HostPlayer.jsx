@@ -1,13 +1,18 @@
 import React from 'react';
 
-function HostPlayer() {
+function Host() {
   return (
-    <div className="host-player-wrapper">
-      <img src="src/assets/icons/crown-nb.png" className="crown" alt="crown" />
-      <span className="pfp" />
-      <span className="username">User1949679</span>
-    </div>
+    <>
+      <span className="host-content-outline" id="outline" />
+      <div className="host-content-wrapper">
+        <span className="pfp-outline">
+          <img src="src/assets/icons/empty-user-icon.png" className="pfp" alt="pfp" />
+        </span>
+        <span className="username">User1949679</span>
+        <img src="src/assets/icons/crown-nb.png" className="crown-icon" alt="crown" />
+      </div>
+    </>
   );
 }
 
-export default HostPlayer;
+export default Host;
