@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Host() {
+function HostPlayer() {
   return (
     <>
       <span className="host-content-outline" id="outline" />
@@ -15,4 +15,4 @@ function Host() {
   );
 }
 
-export default Host;
+export default HostPlayer;

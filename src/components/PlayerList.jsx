@@ -1,6 +1,6 @@
 import React from 'react';
 import Player from './Player';
-import Host from './Host';
+import HostPlayer from './HostPlayer';
 import EmptyPlayer from './EmptyPlayer';
 
 function PlayerList() {
@@ -10,7 +10,7 @@ function PlayerList() {
         <div className="host-title-wrapper">
           <span className="host-title">Host</span>
         </div>
-        <Host />
+        <HostPlayer />
         <div className="players-title-wrapper">
           <span className="players-title">Players</span>
         </div>
