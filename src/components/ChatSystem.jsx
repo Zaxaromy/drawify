@@ -1,13 +1,12 @@
 import React from 'react';
 import Answers from './Answers';
-import Chat from './Chat';
 
-function ChatSystem() {
+function ChatSystem({ children }) {
   return (
     <div className="chat-system-wrapper">
       <Answers />
       <span className="divider" />
-      <Chat />
+      {children}
     </div>
   );
 }

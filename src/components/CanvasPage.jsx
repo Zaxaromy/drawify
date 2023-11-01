@@ -8,6 +8,7 @@ import { ColorProvider } from './ColorContextProvider';
 import { ClearCanvasProvider } from './ClearCanvasContext';
 import PlayerList from './PlayerList';
 import Timer from './Timer';
+import Chat from './Chat';
 
 function CanvasPage() {
   const [socket, setSocket] = useState(null);
@@ -31,7 +32,7 @@ function CanvasPage() {
               {socket && <CanvasComponent socket={socket} selectedColor={selectedColor} />}
               <Underbar setSelectedColor={setSelectedColor} />
             </div>
-            <ChatSystem />
+            <ChatSystem>{socket && <Chat socket={socket} />}</ChatSystem>
             <span className="attribution">
               Icons by
               <span> </span>

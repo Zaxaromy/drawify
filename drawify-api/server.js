@@ -16,6 +16,13 @@ io.on('connection', (socket) => {
 
   socket.on('draw', (data) => {
     io.emit('draw', data);
+    console.log(data);
+  });
+
+  socket.on('message', (message) => {
+    io.emit('message', message); // Broadcast the message to all connected clients
+    console.log(message);
+    console.log('asdf');
   });
 
   socket.on('disconnect', () => {
